@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31005.135
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArvoreAVL", "ArvoreAVL.csproj", "{964D0DA4-DFD8-416C-A068-B23A6E4D3745}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{964D0DA4-DFD8-416C-A068-B23A6E4D3745}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{964D0DA4-DFD8-416C-A068-B23A6E4D3745}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{964D0DA4-DFD8-416C-A068-B23A6E4D3745}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{964D0DA4-DFD8-416C-A068-B23A6E4D3745}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E30FF3C1-A42C-4846-A8F0-57AB9BEC1170}
+	EndGlobalSection
+EndGlobal
