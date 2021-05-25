@@ -6,13 +6,11 @@ namespace ArvoreAVL
 {
     public class No
     {
-        private No no;
-
-        public No(int key, int dados, No no)
+        public No(int key, int dados, No noPai)
         {
             this.key = key;
             this.dados = dados;
-            this.no = no;
+            this.noPai = noPai;
             this.balanceamento = 0;
         }
 
@@ -23,36 +21,39 @@ namespace ArvoreAVL
         public No filhoDireito { get; set; }
         public No noPai { get; set; }
 
-        public void Persistir(int key, int dados)
+        public No Persistir(int key, int dados)
         {
-            this.AdicionarOrAtualizarRecursivo(key, dados);
+            return this.AdicionarOrAtualizarRecursivo(key, dados);
         }
-        private void AdicionarOrAtualizarRecursivo(int key, int dados)
+        private No AdicionarOrAtualizarRecursivo(int key, int dados)
         {
             if (this.key == key)
             {
                 this.dados = dados;
+                return this;
             }
             else if (this.key > key)
             {
                 if (this.filhoEsquerdo != null)
                 {
-                    filhoEsquerdo.AdicionarOrAtualizarRecursivo(key, dados);
+                    return filhoEsquerdo.AdicionarOrAtualizarRecursivo(key, dados);
                 }
                 else
                 {
                     filhoEsquerdo = new No(key, dados, this);
+                    return filhoEsquerdo;
                 }
             }
             else
             {
                 if (this.filhoDireito != null)
                 {
-                    filhoDireito.AdicionarOrAtualizarRecursivo(key, dados);
+                    return filhoDireito.AdicionarOrAtualizarRecursivo(key, dados);
                 }
                 else
                 {
                     filhoDireito = new No(key, dados, this);
+                    return filhoDireito;
                 }
             }
         }
@@ -184,5 +185,6 @@ namespace ArvoreAVL
                 return 1 + Math.Max(getAltura(atual.filhoEsquerdo), getAltura(atual.filhoDireito));
             }
         }
+
     }
 }

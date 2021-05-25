@@ -16,7 +16,8 @@ namespace ArvoreAVL
             }
             else
             {
-                this.raiz.Persistir(key, dados);
+                No novoNo = this.raiz.Persistir(key, dados);
+                this.VerificarBalanceamento(novoNo);
             }
         }
 
@@ -126,7 +127,7 @@ namespace ArvoreAVL
         public void VerificarBalanceamento(No atual)
         {
             setBalanceamento(atual);
-            var balanceamento = atual.getBalanceamento();
+            var balanceamento = atual.balanceamento;
 
             if(balanceamento == -2)
             {
@@ -194,7 +195,7 @@ namespace ArvoreAVL
 
             setBalanceamento(inicial);
             setBalanceamento(esquerda);
-
+           // Console.WriteLine("Rotacao simples para a direita");
             return esquerda;
         }
 
@@ -227,26 +228,106 @@ namespace ArvoreAVL
 
             setBalanceamento(inicial);
             setBalanceamento(direita);
-
+           // Console.WriteLine("Rotacao simples para a esquerda");
             return direita;
         }
 
         public No DuplaRotacaoEsquerdaDireita(No inicial)
         {
             inicial.filhoEsquerdo = RotacaoSimplesEsquerda(inicial.filhoEsquerdo);
-
+           // Console.WriteLine("Rotacao Dula para a direita");
             return RotacaoSimplesDireita(inicial);
         }
 
         public No DuplaRotacaoDireitaEsquerda(No inicial)
         {
             inicial.filhoDireito = RotacaoSimplesDireita(inicial.filhoDireito);
+            //Console.WriteLine("Rotacao Dula para a esquerda");
             return RotacaoSimplesEsquerda(inicial);
         }
 
         public void setBalanceamento(No no)
         {
-            no.setBalanceamento(no.getAltura(no.filhoDireito) - no.getAltura(no.filhoEsquerdo));
+            no.balanceamento = (no.getAltura(no.filhoDireito) - no.getAltura(no.filhoEsquerdo));
+        }
+
+        public void print(int max_altura, int n)
+        {
+            Dictionary<int, List<No>> listaNiveis = new Dictionary<int, List<No>>();
+            //int max_altura = 3;
+
+            for (int i = max_altura; i >= 0; i--)
+            {
+                listaNiveis[i] = new List<No>();
+            }
+
+            listaNiveis[max_altura].Add(this.raiz);
+            for (int i = max_altura - 1; i >= 0; i--)
+            {
+                foreach (No noAtual in listaNiveis[i + 1])
+                {
+                    if (noAtual == null)
+                    {
+                        listaNiveis[i].Add(null);
+                        listaNiveis[i].Add(null);
+                    }
+                    else
+                    {
+                        listaNiveis[i].Add(noAtual.filhoEsquerdo);
+                        listaNiveis[i].Add(noAtual.filhoDireito);
+                    }
+                }
+            }
+
+            StringBuilder sb;
+            for (int i = max_altura; i >= 0; i--)
+            {
+                int size = (int)(Math.Pow(2, i + 1) * n);
+                sb = new StringBuilder("|");
+                foreach (No no in listaNiveis[i])
+                {
+                    if (no == null)
+                    {
+                        sb.Append(this.centerString(" ", size));
+                    }
+                    else
+                    {
+                        sb.Append(this.centerString(no.dados.ToString(), size));
+                    }
+                }
+                sb.Append("|");
+                Console.WriteLine(sb.ToString());
+            }
+
+
+        }
+
+        private string centerString(string value, int size)
+        {
+            string center = value;
+            decimal aux = (size - value.Length) / 2;
+            //Console.WriteLine("aux: {0}", aux);
+            int fill_size = (int)Math.Floor(aux);
+            StringBuilder sb = new StringBuilder(size);
+
+            for (int i = 0; i < fill_size; i++)
+            {
+                sb.Append(" ");
+            }
+
+            if ((size - value.Length) % 2 == 1)
+            {
+                sb.Append(" ");
+            }
+
+            sb.Append(center);
+
+            for (int i = 0; i < fill_size; i++)
+            {
+                sb.Append(" ");
+            }
+
+            return sb.ToString();
         }
     }
 }
