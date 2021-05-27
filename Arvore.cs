@@ -168,10 +168,12 @@ namespace ArvoreAVL
 
         public No RotacaoSimplesDireita(No inicial)
         {
+            this.print(2, 2);
+            Console.WriteLine();
             No esquerda = inicial.filhoEsquerdo;
             esquerda.noPai = inicial.noPai;
 
-            inicial.filhoEsquerdo = inicial.filhoDireito;
+            inicial.filhoEsquerdo = esquerda.filhoDireito;
 
             if(inicial.filhoEsquerdo != null)
             {
@@ -201,6 +203,8 @@ namespace ArvoreAVL
 
         public No RotacaoSimplesEsquerda(No inicial)
         {
+            this.print(2, 2);
+            Console.WriteLine();
             No direita = inicial.filhoDireito;
             direita.noPai = inicial.noPai;
 

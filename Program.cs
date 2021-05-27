@@ -24,8 +24,14 @@ namespace ArvoreAVL
             //arv.Inserir(1, 1);
             //arv.Inserir(15, 15);
 
-            //Console.WriteLine(arv.Consultar(2).dados);
             arv.print(2, 2);
+
+            var consulta = arv.Consultar(8);
+            Console.WriteLine(consulta.filhoDireito.dados);
+            Console.WriteLine(consulta.filhoEsquerdo.dados);
+
+            //Console.WriteLine(arv.Consultar(6).dados);
+
         }
     }
 }
