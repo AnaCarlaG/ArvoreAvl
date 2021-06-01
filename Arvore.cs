@@ -168,8 +168,6 @@ namespace ArvoreAVL
 
         public No RotacaoSimplesDireita(No inicial)
         {
-            this.print(2, 2);
-            Console.WriteLine();
             No esquerda = inicial.filhoEsquerdo;
             esquerda.noPai = inicial.noPai;
 
@@ -197,14 +195,11 @@ namespace ArvoreAVL
 
             setBalanceamento(inicial);
             setBalanceamento(esquerda);
-           // Console.WriteLine("Rotacao simples para a direita");
             return esquerda;
         }
 
         public No RotacaoSimplesEsquerda(No inicial)
         {
-            this.print(2, 2);
-            Console.WriteLine();
             No direita = inicial.filhoDireito;
             direita.noPai = inicial.noPai;
 
@@ -232,21 +227,18 @@ namespace ArvoreAVL
 
             setBalanceamento(inicial);
             setBalanceamento(direita);
-           // Console.WriteLine("Rotacao simples para a esquerda");
             return direita;
         }
 
         public No DuplaRotacaoEsquerdaDireita(No inicial)
         {
             inicial.filhoEsquerdo = RotacaoSimplesEsquerda(inicial.filhoEsquerdo);
-           // Console.WriteLine("Rotacao Dula para a direita");
             return RotacaoSimplesDireita(inicial);
         }
 
         public No DuplaRotacaoDireitaEsquerda(No inicial)
         {
             inicial.filhoDireito = RotacaoSimplesDireita(inicial.filhoDireito);
-            //Console.WriteLine("Rotacao Dula para a esquerda");
             return RotacaoSimplesEsquerda(inicial);
         }
 
